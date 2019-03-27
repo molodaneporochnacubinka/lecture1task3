@@ -20,9 +20,10 @@ function getTopPoint(points) {
 function getTopAverage(points, num) {
     var sum = 0;
     var i = 0;
+    var draftPoints = points.slice();
     while (i < num) {
-        var maxObj = getTopPoint(points);
-        points.splice(maxObj.index, 1);
+        var maxObj = getTopPoint(draftPoints);
+        draftPoints.splice(maxObj.index, 1);
         sum += maxObj.value;
         i++;
     }

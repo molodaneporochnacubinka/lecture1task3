@@ -3,34 +3,16 @@
 var points = [74989, 74990, 84990, 62000, 58480, 61800];
 
 function getTopPoint(points) {
-    var max = points[0];
-    var index = 0;
-    for (var i = 1; i < points.length; i++) {
-        if (points[i] > max) {
-            max = points[i];
-            index = i;
-        }
-    }
-    return {
-        value: max,
-        index: index
-    };
+    points.sort();
+    return points[points.length - 1];
 }
 
-function getTopAverage(points, num) {
-    var sum = 0;
-    var i = 0;
-    var draftPoints = points.slice();
-    while (i < num) {
-        var maxObj = getTopPoint(draftPoints);
-        draftPoints.splice(maxObj.index, 1);
-        sum += maxObj.value;
-        i++;
-    }
-    return sum/num;
+function getTopAverage(points) {
+    points.sort(function(a, b){return b - a});
+    return (points[0] + points[1] + points[2])/3;
 }
 
-console.log(getTopPoint(points).value);
-console.log(getTopAverage(points, 3));
+console.log(getTopPoint(points));
+console.log(getTopAverage(points));
 
 
